@@ -1,0 +1,58 @@
+<idea-plugin>
+    <id>dev.zcode.ide</id>
+    <name>ZCode IDE</name>
+    <vendor>zcode</vendor>
+    <description>在 JetBrains IDE 内嵌官方 ZCode Web UI：Node 后端 + JCEF 渲染，不依赖 Electron。</description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends optional="true" config-file="jcef-dependency.xml">com.intellij.modules.jcef</depends>
+
+    <resource-bundle>messages.ZCodeIdeBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- id 必须与 ZC GUI（com.zcode.ideaplugin.zcode-assistant）的 "ZCode" 区分开，
+             否则两个插件的 ToolWindow 注册会互相覆盖。 -->
+        <!-- canCloseContents=false：ToolWindow 只有一个常驻内容，关掉后没有入口重新打开，
+             用户会看到平台自带的“没有要显示的内容”空状态。 -->
+        <toolWindow
+            id="ZCodeIDE"
+            anchor="right"
+            icon="/icons/zcode.png"
+            factoryClass="dev.zcode.ide.ui.ZCodeToolWindowFactory"
+            canCloseContents="false"
+            secondary="false"
+        />
+        <notificationGroup id="ZCodeIDE" displayType="BALLOON"/>
+        <!-- 设置页：ZCode 运行时（自动更新开关/渠道/URL 覆盖/版本显示/立即检查/清理缓存）。 -->
+        <applicationConfigurable
+            id="dev.zcode.ide.runtime"
+            displayName="ZCode 运行时"
+            instance="dev.zcode.ide.settings.ZCodeRuntimeConfigurable"/>
+        <!-- 启动后把两个右键动作提到 EditorPopupMenu 的最前面（其他插件也用 anchor=first，
+             XML 层面只能按加载顺序排）。见 PromoteZCodeActionsActivity。 -->
+        <postStartupActivity implementation="dev.zcode.ide.startup.PromoteZCodeActionsActivity"/>
+        <!-- IDE 启动后延迟恢复上次开启的 Web 远控（应用级单例，多个项目窗口只初始化一次）。 -->
+        <postStartupActivity implementation="dev.zcode.ide.remote.RemoteControlStartupActivity"/>
+        <!-- IDE 启动 60s 后延迟做一次运行时更新检查（节流/并发防御/开关在 RuntimeUpdater 内）。 -->
+        <postStartupActivity implementation="dev.zcode.ide.startup.RuntimeUpdateCheckActivity"/>
+    </extensions>
+
+    <actions>
+        <!-- 顺序说明：anchor="first" 是「后注册的插到最前」，所以下面的选区动作先声明、
+             文件动作后声明，最终菜单里是「添加到 ZCode 对话」在上、「添加选区…」在下。
+             其他插件也用 first，XML 只能决定相对顺序；绝对置顶由启动后的
+             PromoteZCodeActionsActivity 动态插回 index 0 保证。 -->
+        <!-- 编辑器选区：只发路径与起止行锚点（不发选中原文），由页面拼成 `路径#Lx-Ly` 插入输入框 -->
+        <action id="ZCodeIDE.SendSelectionToComposer"
+                class="dev.zcode.ide.action.SendSelectionToZCodeComposerAction">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+        <!-- 右键把选中的文件/目录引用发送到 ZCode 输入框；文案由 Action 构造器提供 -->
+        <action id="ZCodeIDE.SendToComposer"
+                class="dev.zcode.ide.action.SendToZCodeComposerAction">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorTabPopupMenu" anchor="first"/>
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>

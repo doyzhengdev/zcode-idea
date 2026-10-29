@@ -1,0 +1,15 @@
+{
+  "repo": "https://github.com/zai-org/ZCode.git",
+  "branch": "ide-integration",
+  "commit": "f17677b6fe4e933870798c097e434f629ef18604",
+  "upstreamBase": "3c5b227649371507ddc4eb46ac5133afe6db1cab",
+  "patchBudget": {
+    "maxModified": 23,
+    "note": "官方源码中被修改的文件数上限（不含 web-ide 与 pnpm-lock）；2026-10-24 工作区改动落地后 18 → 23"
+  },
+  "toolchain": {
+    "node": "24",
+    "pnpm": "10",
+    "jdk": "21"
+  }
+}

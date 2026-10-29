@@ -1,0 +1,29 @@
+.gradle/
+# 只忽略根目录构建产物；写成 build/ 会连带忽略 .agents/docs/build/
+/build/
+out/
+.idea/
+.kotlin/
+*.iml
+*.log
+
+# 运行时产物（由 scripts/build-runtime.mjs 生成到 dist/，不入库；安装态目录名仍为 runtime/）
+/dist/
+
+# CI 的 fork 工作副本（scripts/ci-build.mjs 的默认目录，可缓存）
+/.ci/
+
+# 官方源码工作副本（独立 git 仓库，不入库；准备方式见 vendor/README.md）
+/vendor/ZCode
+
+# ZCode CLI 会话数据
+.zcode/
+
+# IntelliJ Platform Gradle Plugin 自更新锁
+.intellijPlatform/
+
+# 打包脚本本地依赖（scripts/package-runtime.mjs 等）
+/node_modules/
+
+# SDD 计划工作区（监督者调度用，不入库）
+/.superpowers/

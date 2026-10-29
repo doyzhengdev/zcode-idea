@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "channel": "stable",
+  "runtimeVersion": "0.1.0+b177da31c187",
+  "runtimeApiVersion": 1,
+  "minPluginVersion": "0.1.0",
+  "maxPluginVersion": "0.1.*",
+  "nodeVersion": "24.14.0",
+  "archivePath": "zcode-ide/runtime/stable/0.1.0-b177da31c187/zcode-runtime.zip",
+  "sha256": "cc8b326bf1de413defc2244bf6126cd7c9dbcf46d418652d670b4cc7ea27bde5",
+  "size": 47240349,
+  "uncompressedSize": 195082702,
+  "builtAt": "2026-10-25T19:05:50.866Z",
+  "forkCommit": "b177da31c18762ed1c19a6ee3afb3a6f23762739",
+  "notes": ""
+}

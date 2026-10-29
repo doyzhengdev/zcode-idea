@@ -1,0 +1,48 @@
+{
+  "name": "zcode-idea",
+  "version": "0.0.8",
+  "description": "ZCode 编程助手的 JetBrains IDE 插件安装器：一条命令装进 IntelliJ IDEA / WebStorm / PyCharm / GoLand 等，复用官方 server 与官方 Web UI。",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "zcode-idea": "bin/zcode-idea.mjs"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "keywords": [
+    "zcode",
+    "z.ai",
+    "glm",
+    "jetbrains",
+    "intellij",
+    "intellij-idea",
+    "idea",
+    "webstorm",
+    "pycharm",
+    "goland",
+    "clion",
+    "jetbrains-plugin",
+    "ide-plugin",
+    "ai-agent",
+    "ai-coding",
+    "coding-assistant",
+    "installer"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "7.10.1",
+    "cac": "6.7.14",
+    "yauzl": "3.4.0"
+  }
+}

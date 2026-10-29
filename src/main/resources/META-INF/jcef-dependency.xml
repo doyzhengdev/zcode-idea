@@ -1,0 +1,3 @@
+<idea-plugin>
+    <!-- 2025.1 起 JCEF 以独立模块提供；显式声明可选依赖，缺失时 ToolWindow 降级为提示页。 -->
+</idea-plugin>

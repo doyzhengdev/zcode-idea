@@ -1,0 +1,20 @@
+{
+  "name": "zcode-ide-scripts",
+  "version": "0.0.8",
+  "private": true,
+  "type": "module",
+  "description": "zcode-ide 仓库根脚本（package-runtime / publish-runtime 等）的本地依赖；只用 Node 内置能力，例外是确定性 zip 用的 yazl 与 workflow 校验用的 js-yaml。",
+  "scripts": {
+    "release": "node scripts/release.mjs",
+    "release:push": "node scripts/release.mjs --apply --push",
+    "release:npm": "node scripts/release.mjs --apply --push --npm",
+    "plugin:build": "node scripts/release.mjs --build-only",
+    "plugin:pack": "cd scripts/npm && npm pack",
+    "plugin:local-update": "node scripts/local-install.mjs",
+    "publish:public": "node scripts/publish-public.mjs"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.0",
+    "yazl": "^3.3.1"
+  }
+}

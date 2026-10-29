@@ -1,0 +1,29 @@
+name: Feature request
+description: 想要的能力或改进
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题
+      description: 描述场景，而不是直接给方案
+      placeholder: 我在多项目窗口之间切换时……
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你期望的效果
+  - type: dropdown
+    id: surface
+    attributes:
+      label: 涉及区域
+      options:
+        - IDE 集成（文件/选区/项目树/通知）
+        - 面板与界面
+        - 安装与升级
+        - 远控
+        - 运行时 / Node
+        - 其它
+    validations:
+      required: true

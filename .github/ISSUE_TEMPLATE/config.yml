@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 官方 ZCode 仓库（ZCode 本身的问题）
+    url: https://github.com/zai-org/ZCode/issues
+    about: 对话/模型/账号等问题属于官方产品，请提到上游仓库
+  - name: 安装器说明
+    url: https://www.npmjs.com/package/zcode-idea
+    about: 安装与升级命令、包说明
